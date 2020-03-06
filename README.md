@@ -27,6 +27,8 @@ Terraform module to deploy redis_exporter on kubernetes.
 | image\_version | Tag of the docker image to use. | `string` | `"latest"` | no |
 | labels | Additionnal labels that will be merged on all resources. | `map` | `{}` | no |
 | namespace | Namespace in which the module will be deployed. | `string` | `"default"` | no |
+| prometheus\_alert\_groups\_rules\_annotations | Map of strings that will be merge on all prometheus alert groups rules annotations. | `map` | `{}` | no |
+| prometheus\_alert\_groups\_rules\_labels | Map of strings that will be merge on all prometheus alert groups rules labels. | `map` | `{}` | no |
 | replicas | Number of replicas to deploy. | `number` | `1` | no |
 | service\_annotations | Additionnal annotations that will be merged for the service. | `map` | `{}` | no |
 | service\_labels | Additionnal labels that will be merged for the service. | `map` | `{}` | no |

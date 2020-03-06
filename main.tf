@@ -20,27 +20,39 @@ locals {
           "alert" = "RedisExporterScrapeErrors"
           "expr"  = "redis_exporter_last_scrape_error > 0"
           "for"   = "2m"
-          "labels" = {
-            "severity" = "critical"
-            "urgency"  = "2"
-          }
-          "annotations" = {
-            "summary"     = "Redis Exporter - Scrape Error on {{ $labels.instance }}"
-            "description" = "Redis Exporter:\n {{ $labels.instance }} has a scrape error.\nLabels:\n{{ $labels }}"
-          }
+          "labels" = merge(
+            {
+              "severity" = "critical"
+              "urgency"  = "2"
+            },
+            var.prometheus_alert_groups_rules_labels
+          )
+          "annotations" = merge(
+            {
+              "summary"     = "Redis Exporter - Scrape Error on {{ $labels.instance }}"
+              "description" = "Redis Exporter:\n {{ $labels.instance }} has a scrape error.\nLabels:\n{{ $labels }}"
+            },
+            var.prometheus_alert_groups_rules_annotations
+          )
         },
         {
           "alert" = "RedisExpoterScrapeDurationError"
           "expr"  = "deriv(redis_exporter_last_scrape_duration_seconds[2m]) > 0.2 and redis_exporter_last_scrape_duration_seconds > 10"
           "for"   = "5m"
-          "labels" = {
-            "severity" = "warning"
-            "urgency"  = "3"
-          }
-          "annotations" = {
-            "summary"     = "Redis Exporter - Scrape Duration Error on {{ $labels.instance }}",
-            "description" = "Redis Exporter:\n {{ $labels.instance }} scrape duration is too high and is climbing.\nLabels:\n{{ $labels }}"
-          }
+          "labels" = merge(
+            {
+              "severity" = "warning"
+              "urgency"  = "3"
+            },
+            var.prometheus_alert_groups_rules_labels
+          )
+          "annotations" = merge(
+            {
+              "summary"     = "Redis Exporter - Scrape Duration Error on {{ $labels.instance }}",
+              "description" = "Redis Exporter:\n {{ $labels.instance }} scrape duration is too high and is climbing.\nLabels:\n{{ $labels }}"
+            },
+            var.prometheus_alert_groups_rules_annotations
+          )
         }
       ]
     },
@@ -51,14 +63,20 @@ locals {
           "alert" = "RedisDown"
           "expr"  = "redis_up < 1"
           "for"   = "1m"
-          "labels" = {
-            "serverity" = "critical"
-            "urgency"   = "2"
-          }
-          "annotations" = {
-            "summary"     = "Redis - Redis Instance {{ $labels.instance }} is down."
-            "description" = "Redis:\n Redis instance {{ $labels.instance }} is down.\nLabels:\n{{ $labels }}"
-          }
+          "labels" = merge(
+            {
+              "serverity" = "critical"
+              "urgency"   = "2"
+            }.
+            var.prometheus_alert_groups_rules_labels
+          )
+          "annotations" = merge(
+            {
+              "summary"     = "Redis - Redis Instance {{ $labels.instance }} is down."
+              "description" = "Redis:\n Redis instance {{ $labels.instance }} is down.\nLabels:\n{{ $labels }}"
+            },
+            var.prometheus_alert_groups_rules_annotations
+          )
         }
       ]
     }
