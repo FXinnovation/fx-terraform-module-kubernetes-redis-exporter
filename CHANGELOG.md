@@ -2,6 +2,7 @@
 0.2.0 / 2020-03-06
 ==================
 
+  * tech: Improve jenkinsfile
   * feat: Add grafana dashboards output (empty tough)
   * tech: Add outputs on example
   * feat: Add more outputs
