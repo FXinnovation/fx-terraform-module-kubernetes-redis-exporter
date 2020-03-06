@@ -35,6 +35,7 @@ Terraform module to deploy redis_exporter on kubernetes.
 | Name | Description |
 |------|-------------|
 | deployment\_name | Name of the deployment created by the module. |
+| prometheus\_alert\_groups | List of alerts that you can import in prometheus. |
 | service\_name | Name of the service created by the module. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
