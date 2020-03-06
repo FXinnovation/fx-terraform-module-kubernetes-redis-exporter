@@ -11,6 +11,7 @@ locals {
     "app.kubernetes.io/name"       = "redis-exporter"
   }
   port               = 9121
+  service_port       = 80
   grafana_dashboards = []
   prometheus_alert_groups = [
     {
@@ -67,7 +68,7 @@ locals {
             {
               "serverity" = "critical"
               "urgency"   = "2"
-            }.
+            },
             var.prometheus_alert_groups_rules_labels
           )
           "annotations" = merge(
@@ -242,7 +243,7 @@ resource "kubernetes_service" "this" {
     }
     type = "ClusterIP"
     port {
-      port        = 80
+      port        = local.service_port
       target_port = "http"
       protocol    = "TCP"
       name        = "http"
