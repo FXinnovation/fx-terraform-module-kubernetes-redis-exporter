@@ -41,6 +41,7 @@ Terraform module to deploy redis_exporter on kubernetes.
 | deployment\_name | Name of the deployment created by the module. |
 | deployment\_template\_annotations | Map of annotations that are configured on the deployment. |
 | deployment\_template\_labels | Map of labels that are configured on the deployment. |
+| grafana\_dashboards | List of strings, each one representing a separate grafana dashboard. |
 | image\_name | Name of the docker image used for the aws-health-status container. |
 | image\_pull\_policy | Image pull policy defined on the aws-health-status container. |
 | image\_version | Tag of the docker image used for the aws-health-status container. |

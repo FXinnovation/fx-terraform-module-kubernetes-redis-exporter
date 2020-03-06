@@ -10,7 +10,8 @@ locals {
     "app.kubernetes.io/managed-by" = "terraform"
     "app.kubernetes.io/name"       = "redis-exporter"
   }
-  port = 9121
+  port               = 9121
+  grafana_dashboards = []
   prometheus_alert_groups = [
     {
       "name" = "redis-exporter"

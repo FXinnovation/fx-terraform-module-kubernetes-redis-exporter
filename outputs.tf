@@ -7,6 +7,11 @@ output "selector_labels" {
   value       = element(concat(kubernetes_service.this.*.spec.0.selector, [{}]), 0)
 }
 
+output "grafana_dashboards" {
+  description = "List of strings, each one representing a separate grafana dashboard."
+  value       = var.enabled ? local.grafana_dashboards : []
+}
+
 output "prometheus_alert_groups" {
   description = "List of maps representing prometheus alerts."
   value       = var.enabled ? local.prometheus_alert_groups : []
