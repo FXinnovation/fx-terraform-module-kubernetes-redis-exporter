@@ -2,6 +2,7 @@
 0.2.0 / 2020-03-06
 ==================
 
+  * fix: Typo in output descriptions
   * fix: Typo and missing local
   * feat: Allow for custom alert labels and annotations
   * tech: Improve jenkinsfile
