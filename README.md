@@ -36,8 +36,21 @@ Terraform module to deploy redis_exporter on kubernetes.
 
 | Name | Description |
 |------|-------------|
+| deployment\_annotations | Map of annotations that are configured on the deployment. |
+| deployment\_labels | Map of labels that are configured on the deployment. |
 | deployment\_name | Name of the deployment created by the module. |
-| prometheus\_alert\_groups | List of alerts that you can import in prometheus. |
+| deployment\_template\_annotations | Map of annotations that are configured on the deployment. |
+| deployment\_template\_labels | Map of labels that are configured on the deployment. |
+| image\_name | Name of the docker image used for the aws-health-status container. |
+| image\_pull\_policy | Image pull policy defined on the aws-health-status container. |
+| image\_version | Tag of the docker image used for the aws-health-status container. |
+| namespace | Name of the namespace in which the resources have been deployed. |
+| prometheus\_alert\_groups | List of maps representing prometheus alerts. |
+| selector\_labels | Map of the labels that are used as selectors. |
+| service\_annotations | Map of annotations that are configured on the service. |
+| service\_labels | Map of labels that are configured on the service. |
 | service\_name | Name of the service created by the module. |
+| service\_port | Port number of the service port. |
+| service\_port\_name | Name of the service port. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
