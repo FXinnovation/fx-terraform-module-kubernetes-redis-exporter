@@ -50,6 +50,16 @@ variable "deployment_name" {
   default     = "redis-exporter"
 }
 
+variable "deployment_template_annotations" {
+  description = "Additionnal annotations that will be merged on the deployment template."
+  default     = {}
+}
+
+variable "deployment_template_labels" {
+  description = "Additionnal labels that will be merged on the deployment template."
+  default     = {}
+}
+
 variable "image_name" {
   description = "Name of the docker image to use."
   default     = "oliver006/redis_exporter"

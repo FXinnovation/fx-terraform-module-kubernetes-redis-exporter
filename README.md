@@ -18,6 +18,8 @@ Terraform module to deploy redis_exporter on kubernetes.
 | deployment\_annotations | Additionnal annotations that will be merged on the deployment. | `map` | `{}` | no |
 | deployment\_labels | Additionnal labels that will be merged on the deployment. | `map` | `{}` | no |
 | deployment\_name | Name of the deployment that will be create. | `string` | `"redis-exporter"` | no |
+| deployment\_template\_annotations | Additionnal annotations that will be merged on the deployment template. | `map` | `{}` | no |
+| deployment\_template\_labels | Additionnal labels that will be merged on the deployment template. | `map` | `{}` | no |
 | enabled | Whether or not to enable this module. | `bool` | `true` | no |
 | environment\_variables | Map of key/values that will be injected as environement variables to configure redis-exporter. More information [here](https://github.com/oliver006/redis_exporter). | `map` | `{}` | no |
 | image\_name | Name of the docker image to use. | `string` | `"oliver006/redis_exporter"` | no |
