@@ -3,6 +3,14 @@
 Terraform module to deploy redis_exporter on kubernetes.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+| kubernetes | >= 1.10.0 |
+| random | >= 2.0.0 |
+
 ## Providers
 
 | Name | Version |
@@ -13,7 +21,7 @@ Terraform module to deploy redis_exporter on kubernetes.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | annotations | Additionnal annotations that will be merged on all resources. | `map` | `{}` | no |
 | deployment\_annotations | Additionnal annotations that will be merged on the deployment. | `map` | `{}` | no |
 | deployment\_labels | Additionnal labels that will be merged on the deployment. | `map` | `{}` | no |

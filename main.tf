@@ -13,12 +13,22 @@ locals {
   port               = 9121
   service_port       = 80
   grafana_dashboards = []
+  prometheus_alert_groups_rules_labels = merge(
+    {
+      "source" = "https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-kubernetes-redis-exporter"
+    },
+    var.prometheus_alert_groups_rules_labels
+  )
+  prometheus_alert_groups_rules_annotations = merge(
+    {},
+    var.prometheus_alert_groups_rules_annotations
+  )
   prometheus_alert_groups = [
     {
       "name" = "redis-exporter"
       "rules" = [
         {
-          "alert" = "RedisExporterScrapeErrors"
+          "alert" = "redis exporter - Scrape Errors"
           "expr"  = "redis_exporter_last_scrape_error > 0"
           "for"   = "2m"
           "labels" = merge(
@@ -26,18 +36,18 @@ locals {
               "severity" = "critical"
               "urgency"  = "2"
             },
-            var.prometheus_alert_groups_rules_labels
+            local.prometheus_alert_groups_rules_labels
           )
           "annotations" = merge(
             {
               "summary"     = "Redis Exporter - Scrape Error on {{ $labels.instance }}"
               "description" = "Redis Exporter:\n {{ $labels.instance }} has a scrape error.\nLabels:\n{{ $labels }}"
             },
-            var.prometheus_alert_groups_rules_annotations
+            local.prometheus_alert_groups_rules_annotations
           )
         },
         {
-          "alert" = "RedisExpoterScrapeDurationError"
+          "alert" = "redis exporter - Scrape Duration Error"
           "expr"  = "deriv(redis_exporter_last_scrape_duration_seconds[2m]) > 0.2 and redis_exporter_last_scrape_duration_seconds > 10"
           "for"   = "5m"
           "labels" = merge(
@@ -45,14 +55,14 @@ locals {
               "severity" = "warning"
               "urgency"  = "3"
             },
-            var.prometheus_alert_groups_rules_labels
+            local.prometheus_alert_groups_rules_labels
           )
           "annotations" = merge(
             {
               "summary"     = "Redis Exporter - Scrape Duration Error on {{ $labels.instance }}",
               "description" = "Redis Exporter:\n {{ $labels.instance }} scrape duration is too high and is climbing.\nLabels:\n{{ $labels }}"
             },
-            var.prometheus_alert_groups_rules_annotations
+            local.prometheus_alert_groups_rules_annotations
           )
         }
       ]
@@ -61,7 +71,7 @@ locals {
       "name" = "redis"
       "rules" = [
         {
-          "alert" = "RedisDown"
+          "alert" = "redis - Datastore Down"
           "expr"  = "redis_up < 1"
           "for"   = "1m"
           "labels" = merge(
@@ -69,14 +79,14 @@ locals {
               "serverity" = "critical"
               "urgency"   = "2"
             },
-            var.prometheus_alert_groups_rules_labels
+            local.prometheus_alert_groups_rules_labels
           )
           "annotations" = merge(
             {
               "summary"     = "Redis - Redis Instance {{ $labels.instance }} is down."
               "description" = "Redis:\n Redis instance {{ $labels.instance }} is down.\nLabels:\n{{ $labels }}"
             },
-            var.prometheus_alert_groups_rules_annotations
+            local.prometheus_alert_groups_rules_annotations
           )
         }
       ]
