@@ -15,7 +15,7 @@ locals {
   grafana_dashboards = []
   prometheus_alert_groups_rules_labels = merge(
     {
-      "source" = "https://scm.dazzlingwrench.fxinnovation.com/fxinnovation-public/terraform-module-kubernetes-redis-exporter"
+      "source" = "https://github.com/FXinnovation/fx-terraform-module-kubernetes-redis-exporter"
     },
     var.prometheus_alert_groups_rules_labels
   )
